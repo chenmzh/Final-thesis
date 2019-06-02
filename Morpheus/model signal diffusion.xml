@@ -1,0 +1,557 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<MorpheusModel version="3">
+    <Description>
+        <Title>Example-Proliferation2D</Title>
+        <Details></Details>
+    </Description>
+    <Global>
+        <Variable symbol="c" value="0.0"/>
+        <Variable symbol="membrane1" value="0.00"/>
+        <Variable symbol="membrane2" value="0.00"/>
+        <Variable symbol="padhp" value="0.00"/>
+        <Variable symbol="QSs" value="0.00"/>
+        <!--    <Disabled>
+        <Field symbol="QSs" value="0">
+            <Diffusion rate="5"/>
+        </Field>
+
+		
+        <System solver="heun" time-step="1.0">
+            <DiffEqn symbol-ref="QSs">
+                <Expression>QSs
+</Expression>
+            </DiffEqn>
+        </System>
+    </Disabled>
+-->
+        <Constant symbol="test" value="0"/>
+        <Constant symbol="k_txn" value="50"/>
+        <Constant symbol="k_pcons_txn" value="50"/>
+        <Constant symbol="k_tln" value="50"/>
+        <Constant symbol="k_mRNAmdeg" value="1"/>
+        <Constant symbol="k_pdeg" value="0.5"/>
+        <Constant symbol="k_mR1mdeg" value="1"/>
+        <Constant symbol="k_pR1pdeg" value="0.5"/>
+        <Constant symbol="k_pR1" value="1"/>
+        <Constant symbol="k_mendomdeg" value="1"/>
+        <Constant symbol="k_pendopdeg" value="0.5"/>
+        <Constant symbol="k_mrepmdeg" value="1"/>
+        <Constant symbol="k_endocut" value="10"/>
+        <Constant symbol="lamdba_rep" value="2"/>
+        <Constant symbol="k_prep_tln" value="50"/>
+        <Constant symbol="k_preppdeg" value="0.5"/>
+        <Constant symbol="k_prep" value="1"/>
+        <Constant symbol="k_mQSmdeg" value="1"/>
+        <Constant symbol="k_pQSpdeg" value="0.5"/>
+        <Constant symbol="k_QSsproduction" value="50"/>
+        <Constant symbol="k_QSsdeg" value="5"/>
+        <Constant symbol="k_mQSRmdeg" value="1"/>
+        <Constant symbol="k_pQSRpdeg" value="0.5"/>
+        <Constant symbol="k_QSs" value="1"/>
+        <Constant symbol="k_pQSR" value="1"/>
+        <Constant symbol="k_madhpmdeg" value="1"/>
+        <Constant symbol="k_padhppdeg" value="0.5"/>
+        <Constant symbol="n1" value="2"/>
+        <Constant symbol="n2" value="2"/>
+        <Constant symbol="n3" value="2"/>
+        <Constant symbol="n4" value="2"/>
+        <Constant symbol="k_resource" value="1e6"/>
+        <!--    <Disabled>
+		<Variable symbol="mR1" value="0.0"/>
+		<Variable symbol="pR1" value="0.0"/>
+		<Variable symbol="mendo" value="0.0"/>
+		<Variable symbol="pendo" value="0.0"/>
+		<Variable symbol="mrep" value="0.0"/>
+		
+		<Variable symbol="prep" value="0.0"/>
+		<Variable symbol="mQS" value="0.0"/>
+		<Variable symbol="pQS" value="0.0"/>
+		<Variable symbol="QSs" value="0.0"/>
+		<Variable symbol="mQSR" value="0.0"/>
+		
+		<Variable symbol="pQSR" value="0.0"/>
+		<Variable symbol="madhp" value="0.0"/>
+		<Variable symbol="padhp" value="0.0"/>
+    </Disabled>
+-->
+        <Field symbol="chemical" value="0">
+            <Diffusion rate="10"/>
+        </Field>
+        <System solver="heun" time-step="1.0">
+            <DiffEqn symbol-ref="chemical">
+                <Expression>Phloretin*0.1-0.1*chemical
+</Expression>
+            </DiffEqn>
+        </System>
+        <Constant symbol="Phloretin" value="0"/>
+    </Global>
+    <Space>
+        <Lattice class="hexagonal">
+            <Size symbol="size" value="1000 1000 0"/>
+            <BoundaryConditions>
+                <Condition boundary="x" type="periodic"/>
+                <Condition boundary="y" type="periodic"/>
+            </BoundaryConditions>
+            <Neighborhood>
+                <Order>3</Order>
+            </Neighborhood>
+        </Lattice>
+        <SpaceSymbol symbol="space"/>
+        <MembraneLattice>
+            <Resolution value="100"/>
+            <SpaceSymbol symbol="m"/>
+        </MembraneLattice>
+    </Space>
+    <Time>
+        <StartTime value="0"/>
+        <StopTime symbol="stoptime" value="1000"/>
+        <TimeSymbol symbol="time"/>
+    </Time>
+    <CellTypes>
+        <CellType class="biological" name="cell1">
+            <Property symbol="p" value="5e-4" name="proliferation rate"/>
+            <Property symbol="d" value="0" name="divisions"/>
+            <Property symbol="c" value="0" name="color"/>
+            <!--    <Disabled>
+        <Property symbol="mR1" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pR1" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mendo" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pendo" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mrep" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="prep" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mQS" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pQS" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="QSs" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mQSR" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pQSR" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="madhp" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="padhp" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+			<Variable symbol="mR1" value="0.0"/>
+			<Variable symbol="pR1" value="0.0"/>
+			<Variable symbol="mendo" value="0.0"/>
+			<Variable symbol="pendo" value="0.0"/>
+			<Variable symbol="mrep" value="0.0"/>
+			
+			<Variable symbol="prep" value="0.0"/>
+			<Variable symbol="mQS" value="0.0"/>
+			<Variable symbol="pQS" value="0.0"/>
+			<Variable symbol="QSs" value="0.0"/>
+			<Variable symbol="mQSR" value="0.0"/>
+			
+			<Variable symbol="pQSR" value="0.0"/>
+			<Variable symbol="madhp" value="0.0"/>
+			<Variable symbol="padhp" value="0.0"/>
+    </Disabled>
+-->
+            <VolumeConstraint target="500" strength="1"/>
+            <SurfaceConstraint target="0.9" mode="aspherity" strength="1"/>
+            <System solver="runge-kutta" time-step="0.001">
+                <Rule symbol-ref="c">
+                    <Expression>if( c > 0, c-1, 0)</Expression>
+                </Rule>
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mR1">
+            <Expression>k_pcons_txn - k_mR1mdeg * mR1</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pR1">
+            <Expression>k_tln * mR1 - k_pR1pdeg * pR1</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mendo">
+            <Expression>k_pcons_txn * (k_pR1)^n1/((k_pR1)^n1+(pR1)^n1) - k_mendomdeg * mendo
+</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pendo">
+            <Expression>k_tln * mendo - k_pendopdeg * pendo</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mrep">
+            <Expression>k_pcons_txn - k_mrepmdeg * mrep -k_endocut * pendo * mrep + mrep * lamdba_rep*(k_resource - mrep)/k_resource</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="prep">
+            <Expression>k_prep * mrep - prep * k_preppdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mQS">
+            <Expression>(prep)^n2/((k_prep)^n2+(prep)^n2)*k_txn - k_mQSmdeg * mQS</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pQS">
+            <Expression>k_tln * mQS - k_pQSpdeg * pQS</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="QSs">
+            <Expression>k_QSs * pQS - k_QSsdeg * QSs</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mQSR">
+            <Expression>k_pcons_txn - mQSR * k_mQSRmdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pQSR">
+            <Expression>k_tln * mQSR - k_pQSRpdeg * pQSR</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="madhp">
+            <Expression>(pQSR)^n3/((pQSR)^n3+k_pQSR^n3)*(QSs)^n4/((QSs)^n4+(k_QSs)^n4)*k_txn - madhp * k_madhpmdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="padhp">
+            <Expression>k_tln * madhp - padhp * k_padhppdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+            </System>
+            <CellDivision daughterID="daughter" division-plane="random">
+                <Condition>rand_uni(0,1) &lt; p</Condition>
+                <Triggers>
+                    <Rule symbol-ref="d">
+                        <Expression>d+1</Expression>
+                    </Rule>
+                    <Rule symbol-ref="c" name="color after division">
+                        <Expression>100000</Expression>
+                    </Rule>
+                    <Rule symbol-ref="s">
+                        <Expression>if(daughter == 1, 1, 0)</Expression>
+                    </Rule>
+                </Triggers>
+            </CellDivision>
+            <ChangeCellType newCellType="cell2">
+                <Condition>s == 0</Condition>
+                <Triggers/>
+            </ChangeCellType>
+            <Property symbol="s" value="1"/>
+            <MembraneProperty symbol="membrane1" value="padhp">
+                <Diffusion rate="0.0"/>
+            </MembraneProperty>
+            <Property symbol="Phloretin" value="10"/>
+            <Property symbol="death_reporter" value="Phloretin"/>
+        </CellType>
+        <CellType class="biological" name="cell2">
+            <!--    <Disabled>
+        <Property symbol="mR1" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pR1" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mendo" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pendo" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mrep" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="prep" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mQS" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pQS" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="QSs" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="mQSR" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="pQSR" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="madhp" value="0.0" name=""/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+			<Variable symbol="mendo" value="0.0"/>
+			<Variable symbol="pendo" value="0.0"/>
+			<Variable symbol="mrep" value="0.0"/>
+			
+			<Variable symbol="prep" value="0.0"/>
+			<Variable symbol="mQS" value="0.0"/>
+			<Variable symbol="pQS" value="0.0"/>
+			<Variable symbol="QSs" value="0.0"/>
+			<Variable symbol="mQSR" value="0.0"/>
+			
+			<Variable symbol="pQSR" value="0.0"/>
+			<Variable symbol="madhp" value="0.0"/>
+			<Variable symbol="padhp" value="0.0"/>
+    </Disabled>
+-->
+            <!--    <Disabled>
+        <Property symbol="padhp" value="0.0" name=""/>
+    </Disabled>
+-->
+            <VolumeConstraint target="500" strength="1"/>
+            <SurfaceConstraint target="0.9" mode="aspherity" strength="1"/>
+            <!--    <Disabled>
+        <MembraneProperty symbol="membrane2" value="padhp">
+            <Diffusion rate="0.0"/>
+        </MembraneProperty>
+    </Disabled>
+-->
+            <Property symbol="p" value="5e-4"/>
+            <Property symbol="c" value="0"/>
+            <System solver="runge-kutta" time-step="0.001">
+                <Rule symbol-ref="c">
+                    <Expression>if(c>0,c-1,0)</Expression>
+                </Rule>
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mendo">
+            <Expression>k_pcons_txn * (k_pR1)^n1/((k_pR1)^n1+(pR1)^n1) - k_mendomdeg * mendo</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pendo">
+            <Expression>k_tln * mendo - k_pendopdeg * pendo</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mrep">
+            <Expression> - k_mrepmdeg * mrep -k_endocut * pendo * mrep + mrep * lamdba_rep*(k_resource - mrep)/k_resource</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="prep">
+            <Expression>k_prep * mrep - prep * k_preppdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mQS">
+            <Expression>(prep)^n2/((k_prep)^n2+(prep)^n2)*k_txn - k_mQSmdeg * mQS</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pQS">
+            <Expression>k_tln * mQS - k_pQSpdeg * pQS</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="QSs">
+            <Expression>k_QSs * pQS - k_QSsdeg * QSs</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mQSR">
+            <Expression>k_pcons_txn - mQSR * k_mQSRmdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pQSR">
+            <Expression>k_tln * mQSR - k_pQSRpdeg * pQSR</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="madhp">
+            <Expression>(pQSR)^n3/((pQSR)^n3+k_pQSR^n3)*(QSs)^n4/((QSs)^n4+(k_QSs)^n4)*k_txn - madhp * k_madhpmdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="padhp">
+            <Expression>k_tln * madhp - padhp * k_padhppdeg</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="mR1">
+            <Expression> - k_mR1mdeg * mR1</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+                <!--    <Disabled>
+        <DiffEqn symbol-ref="pR1">
+            <Expression>k_tln * mR1 - k_pR1pdeg * pR1</Expression>
+        </DiffEqn>
+    </Disabled>
+-->
+            </System>
+            <CellDivision division-plane="major">
+                <Condition>rand_uni(0,1) &lt; p</Condition>
+                <Triggers>
+                    <Rule symbol-ref="c">
+                        <Expression>1000</Expression>
+                    </Rule>
+                </Triggers>
+            </CellDivision>
+            <CellDeath>
+                <Condition>death_reporter &lt; 0.005</Condition>
+            </CellDeath>
+            <Property symbol="death_reporter" value="0"/>
+            <!--    <Disabled>
+        <NeighborhoodReporter>
+            <Input scaling="cell" value="padhp"/>
+            <Output symbol-ref="neighborpadhp" mapping="sum"/>
+        </NeighborhoodReporter>
+    </Disabled>
+-->
+            <Mapper>
+                <Input value="chemical"/>
+                <Output symbol-ref="death_reporter" mapping="average"/>
+            </Mapper>
+        </CellType>
+    </CellTypes>
+    <CPM>
+        <Interaction default="0">
+            <Contact type1="cell1" type2="cell1" value="0">
+                <AddonAdhesion strength="5" adhesive="membrane1"/>
+            </Contact>
+            <Contact type1="cell1" type2="cell2" value="0">
+                <HeterophilicAdhesion strength="5" adhesive1="membrane1" adhesive2="membrane2"/>
+            </Contact>
+            <Contact type1="cell2" type2="cell2" value="0">
+                <AddonAdhesion strength="5" adhesive="membrane2"/>
+            </Contact>
+        </Interaction>
+        <MonteCarloSampler stepper="edgelist">
+            <MCSDuration value="0.01"/>
+            <Neighborhood>
+                <Order>2</Order>
+            </Neighborhood>
+            <MetropolisKinetics temperature="3" yield="0.1"/>
+        </MonteCarloSampler>
+        <ShapeSurface scaling="norm">
+            <Neighborhood>
+                <Order>3</Order>
+            </Neighborhood>
+        </ShapeSurface>
+    </CPM>
+    <CellPopulations>
+        <Population size="1" type="cell1">
+            <InitCircle mode="regular" number-of-cells="1">
+                <Dimensions radius="35" center="500, 500, 0"/>
+            </InitCircle>
+        </Population>
+    </CellPopulations>
+    <Analysis>
+        <Gnuplotter time-step="10" decorate="false">
+            <Terminal name="png"/>
+            <Plot>
+                <Cells value="c" min="0.0" max="1">
+                    <ColorMap>
+                        <Color value="1" color="red"/>
+                        <Color value="0.0" color="green"/>
+                    </ColorMap>
+                </Cells>
+                <CellLabels fontsize="8" value="d"/>
+                <Field symbol-ref="chemical"/>
+            </Plot>
+        </Gnuplotter>
+        <Logger time-step="20">
+            <Restriction>
+                <Celltype celltype="cell2"/>
+            </Restriction>
+            <Input>
+                <Symbol symbol-ref="chemical"/>
+                <Symbol symbol-ref="celltype.cell2.size"/>
+                <Symbol symbol-ref="death_reporter"/>
+            </Input>
+            <Output>
+                <TextOutput/>
+            </Output>
+            <Plots>
+                <Plot log-commands="true" time-step="20">
+                    <Style point-size="0.5" grid="true" style="linespoints"/>
+                    <Terminal terminal="png"/>
+                    <X-axis minimum="0" maximum="stoptime">
+                        <Symbol symbol-ref="time"/>
+                    </X-axis>
+                    <Y-axis minimum="0" maximum="50">
+                        <Symbol symbol-ref="chemical"/>
+                        <Symbol symbol-ref="celltype.cell2.size"/>
+                        <Symbol symbol-ref="death_reporter"/>
+                    </Y-axis>
+                </Plot>
+            </Plots>
+        </Logger>
+    </Analysis>
+</MorpheusModel>
