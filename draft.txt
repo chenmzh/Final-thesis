@@ -1,0 +1,484 @@
+THESIS
+ 
+ Synththetic Morphogenesis:
+Subject :    Synththetic Morphogenesis:             
+Engineering Cell Population with Specific Size
+Student Name : Mingzhe Chen              
+Student ID :         60971060                     
+Year of Entrance :       2015                    
+School :    School of Life Science and Technology
+Major :              Biology                       
+Advisor :          Guisheng Zhong                  
+ 
+ 
+ 
+ 
+ShanghaiTech University
+Date: 2019 / 5
+ 
+
+
+         Synthetic morphogenesis: using synthetic biology methods to construct cell populations of specific size
+ 
+Synthetic morphogenesis: using synthetic biology methods to construct cell populations of specific size
+ 
+Summary
+ 
+Synthetic biology, as an emerging discipline that has been activating in the past two decades, aims to serve the specific engineering purposes by reconstructing or rewiring the genetic circuits inside cells. In the past two decades, the synthetic biology researches basically focus on the single-cell scale behavior. However, with the development of tools on cell-cell interactions and intercellular communication in recent years, how to construct cell populations with specific structures and functions has become a new research hotspot as the intersection of synthetic biology and developmental biology. Nevertheless, how to design, model and complete such multi-cellular biological processes has not been systematically studied and fully discussed so far. Questions such as how to define the basic engineering module which could comprise the developmental process, and the principle of organizing and reconstructing the morphogenesis process, which we called it synthetic morphogenesis, remains to be answered. In this paper, I mainly discuss how to engineer a process deriving from one single cell to develop into a multi-cell population with the certain size. The genetic circuits that required for engineering implementation are rationally designed. Then I validate the basic parameters of cell growth and gene transcription-translation process which is a necessity for modeling implemented by Morpheus; following experiments such as the tests of phloretin system and plasmid duplication are designed to prove the concepts of previous designs partially.
+ 
+Keywords: synthetic biology Morphogenesis Group quantity control
+ 
+table of Contents
+ 
+Chapter 1 : From Synthetic Biology to Synthetic Morphogenesis -------------------------------------- --------------- -------------------1
+1.1 Background Introduction ----------------------------------------------- -------- ----------- ------------------------------- ----1
+1.1.1 Traditional Synthetic Biology: Research on single-Cell level ----------------------------------- ---1
+Synthesis of morphogenesis 1 .1.2: The process of cell populations for the study ----------------------------------- ------1
+1.2 Construction of a regulatable cell sphere of a specific size ------------------------------------ - -- ---------------------3
+1.2.1 Objectives ---------------------------------------------- ------------------------- - ------------------------ ---3
+1.2. 2 Principles -- --------------------------------------------- ---------------------------------------------- 3
+1.2.3 Synthetic biology implementation ---------------------------------------------- ------------------------------------5
+1.2. 4 Importance and innovation ------------------------------------------ -----------------------------------------6
+Chapter 2 : Simulation, Numerical Verification and Experiments -------------------------------- --- ---------- ----------------------------------------- 7
+2.1 Morpheus using modeling and numerical simulation: -------------------------------------- ---- ------- ------------7
+2.1. 1 Modeling and introduction of Morpheus ------------- --- -- ------ ------------------ -------------------------------7
+2.1 .2 Determination of kinetic parameters and time scale separation ------------------------- --- - --- ------- --------------- - ------7
+2.1.3 Morpheus Process - --------------------------- --- -------- ------ ------------ -----------------------------9
+2.1. 4 Discussion and reflection --------------------------- --- ---------- ---- ----------------- ---------------------------10
+2.2 Experimental design and verification ------------- --- -------------------- ---------- --------------- -----------------------------11
+2.2.1 Inter-cell long-distance communication system test --------- ----------- -------------------- --------------------11
+2.2.2 Undiluted plasmid and diluted plasmid system construction - ------------------- ------------------- --------------------15
+Chapter 3: Reflection and discussion -------------------------- ---------------- - --- ----------------------------------------------- ----20
+Reference --------------------- --- --------------- --------- ------------------------------ -------------------- --------------21
+Acknowledgement --------------------------- --- -------- ----------- ---------------------------- ---------------------- --------------------22
+Appendix --------------------------- --- ----- -------------- ------------------------- ------------------------- --------------------23
+ 
+ 
+ 
+ 
+         Synthetic morphogenesis: using synthetic biology methods to construct cell populations of specific size
+ 
+First chapter: from synthetic biology to synthetic morphogenesis
+ 
+1.1 Background introduction
+1.1.1 Conventional synthetic biology: unicellular biological processes
+
+Synthetic biology is an emerging engineering discipline which applies the research paradigm of traditional electronic engineering to the biomolecule process. Although computational biology and synthetic biology both analyses biological procedures and systems in a quantitative way, the research paradigm of computational biology is quite different from that of synthetic biology, which gains the knowledge of biological system through "rebuilding the biological process", rather than analyzing the endogenous systems.
+
+On one hand, to produce specific bio products or to execute special tasks, synthetic biologists rewire or redesign the endogenous biological system for their own needs. And such process of engineering the existing bio system could, on the other hand, intentionally or unintentionally, improve human's understanding of the complexity of biological systems.
+ 
+The research paradigm of synthetic biology refers to the notions of modularization and standardization a lot from computer science. The synthetic biologists tried to decoupled the known biomolecule process and treat them as separate modules orthogonal to the endogenous system. By treating such separated modules as simple "Blackbox", researchers could focus on the input and output of these biological process, rather than to focus on the massive interaction of biomolecules. 
+
+During the past two decades, principle of genetic engineering have been well-established and most synthetic biologists are focusing on designing the genetic circuits interface, such as oscillators, feedforward loops, and trigger switches within cells.[1] Some researches on population behaviors such as quorum sensing, the formation of Turing pattern, however, are still measuring the bulk property without ingenious intercellular structure.
+
+Nevertheless, with the recent development of synthetic biological tools, peoples are able to engineer genetic circuits insides much more complicated organisms such as the Chinese hamster ovary cells (CHO) and human embryonic kidney cell lines (HEK 293). The property of these mammalian cells, such as the ability to express adhesion protein, send and reveive long-term and short-term signals, make them good candidates for engineering the complicated multicellular behavior. 
+ 
+1.1.2 Synthetic morphogenesis: reprogramming multi-cellular structure
+
+When reviewing the course of evolution, there are different forms of life, evloving from the simplest single cells, such as most prokaryotes and some eukaryotes such as Saccharomyces cerevisiae, to those which owning some population behavior or simple structure such as the sponges with two-layer homogenous structure, and eventually to these that owning highly-organized structures such as most of the animals and plants we come up with today in nature. However, questions such as how could the simple DNA sequences of these lifes help guide the whole developmental process from one single cell and how could we engineer such organism are still unanswered. 
+
+Though we might not know the mechanism within the genetic code yet, the lucky thing is, we have grabbed the tools which could potentially used to build complicated structure by ourselves.
+
+The previous researches on modulating population behavior such as quorum sensing, and engineering cell to cell interface such as adhesion proteins and syn-notch signal provide us the very basic tools for engineering and study the multicellular behaviors.
+
+So the questions are, from the synthetic biology perspective, what's the principle for synthetic morphorgensis and what’s the basic “black box” for the multicellular developmental process? What the model of these process should look like and how to analysize such process in the time and spatial scale?
+ 
+ 
+ 
+/2019/7/30
+ 
+ 
+ 
+ 
+ 
+1.2 Construction of a ball of cell population with a regulatable size
+
+1.2.1 Specific aim:
+The goal is to build a radial self-sustainable 3D multicellular system deriving from one single cell. The size of the ball of cell population can be regulated. Different from employing the endogenous developmental program inside the nucleus, we only use mammlian cell as a chassis and design everything from scratch.
+To reach the specific aim, I designed the whole system consisted of three subparts, which could be combined to work together to reasch the sim. 
+Firstly, 
+
+  a division into cells by a single system by means of cell division, formation of groups having a particular number. Once the number of groups reaches a certain value, the multi-cellpopulation will stop dividing or induce programmed cell death (Programmed cell death, PCD) in order to maintain a specific number. Once a portion of the cell sphere is damaged, the system can be restored to the same size as before by splitting . Theoretically the number of the multi-cell system can be controlled activating factor regulating gene expression by an external circuit.
+ 
+ 
+FIG. 1-1: a self-healing function, a number of cell populations
+ 
+1.2.2 principle:
+ 
+In this paper three different design features to generate object to up to number of populations of cells having a particular sphere, comprising: (1) asymmetric cell division (2) cell-to-cell communication system (3) Programmed cell Sexual death or cell cycle control.
+ 
+(1) refers to asymmetric cell division, for the mother cell and words, that each division will be two different cell types, we define them as: "mother cell" and "daughter cells." A mother cell refers to a cell that has the same properties as before the division , while a daughter cell has a property different from that of the pre- division cell . Here, we define the sub-cells are each split to form two identical daughter cells, can be imagined, for the entire system from a single parent cell division will contain from mother cell and a plurality of sub-cells
+ 
+ 
+Figure 1-2 : The mother cell undergoes asymmetric cell division, splitting into two cell types, and the daughter cell divides into a cell type consistent with the original cell.
+ 
+( 2 ) Signal transmission system. The mother cell needs to generate a specific signal that maintains the cell's survival state , which can be transmitted to the surrounding sub- organism in the form of intercellular contact (eg, by engineering the Notch-delta pathway, the engineered synN otch system ) [ 2,3 ] . cells, or in a manner similar quorum sensing, in the form of long-distance communication cells, generate specific "survivalsignal gradients" to maintain "sub-cells" living condition [4].
+ 
+For systemic spread of the signal, the concentration gradient of the intensity of the signal molecule is generated by the rate signal molecules mother cell, the local signal molecule diffusion constant D, the localsignal molecule in the decay rates R together determine the diffusion process.
+ 
+  
+ 
+FIG. 1-3: a schematic view of diffusion (a), diffusion simulation (left) and the diffusion equation (right) and with a characteristic length and the degradation rate of production rate change (lower)(retrieved from Katherine, modeled by Morpheus)
+ 
+FIG Morpheus using the simulation at different diffusion rates and the rate of decay case, after reaching a steady state concentration gradient and the intensity of a signal molecule. It can be seen from the analysis and simulation that when the generation rate of the signal molecule is constant, the faster the diffusion rate, the slower the degradation rate, and the wider the diffusion range of the signal molecules . Converselywhen the signal is very slow molecular diffusion, degradation quickly, then only the diffusion limited distance. Generating a signal when the rate of increase, the overall signal strength will increase, but the characteristic length (average concentration when the concentration reaches a distance from the signal source) is independent of the production rate, but negatively correlated with the rate of degradation. This indicates that as the rate of signal degradation increases , the signal concentration will reach an average over a shorter distance .
+ 
+(3) cell cycle inhibition or programmed cell death: in prokaryotes already use quorum sensing to regulate access should switch suicide shocks change the number of instances of groups, and research related deaths switchin eukaryotes is still missing. In eukaryotic cells, there are engineered ribosomes switch constructs inducible gene expression in a circuit to limit cell specific cell study period. There are also studies in whichcells are captured by cyclins at a particular cell stage . Here, we need to build inducing programmed cell death based on death switch circuit eukaryotic cells, or inhibition of normal cell division.
+ 
+1.2.3 Synthetic biology
+ 
+Figure 1-4: Overview of synthetic biology to achieve design
+ 
+The core of the design is to design two different plasmids to carry two sets of gene loops respectively , and to make a difference in gene expression between the mother cells and the daughter cells by utilizingwhether the plasmid can replicate in the cells .
+ 
+Mother cells carrying both plasmids having no dilutive and non dilutive plasmid capable of replication along with cell replication cycle characteristics. When the cell contains only a single dilution of plasmid, in the course of the next cell division, the single plasmid, the random access will be split up in one cell; not diluted plasmid replication will be associated with the cell cycle, average Assigned to two cells.Therefore , a cell containing both a dilute plasmid and a non-dilute plasmid will have the characteristics of a mother cell , and a cell containing only a non-dilute plasmid will have the characteristics of a daughter cell .
+ 
+Dilution of the plasmid carrying the cellular communication system "transmission side" means the protein responsible for transcription translation catalytic synthesis of small molecule signal, or a synthesized signalcorresponding synnotch (corresponding to long-distance communication cells and cell contact of the two different types of signals) . Instead of diluted plasmid carrying "receiving" corresponding apparatus, upon receiving a signal strength below a certain threshold value, will initiate apoptosis downstream of the system.
+ 
+Considering the protein produced from a single plasmid is difficult to detect, can be introduced on a plasmid is diluted in the design stage of the experimental positive feedback loop, to expand the gene expression differences caused by a single plasmid. Or the protein can be used -DNA interactions and protein multimerization, the plurality of dilution of plasmid crosslinked together. In prokaryotes , asymmetric division using the relevant principles has been achieved [ 5 ] , and there have been no related attempts in eukaryotes.
+ 
+1.2.4 Importance and innovation :
+Has previously been associated control instance using a number of quorum sensing cell population [4], but tend to form quorum sensing systems have one, to the respective signal distribution isotropic concentration, andthe system can be used to construct the signaling molecule formed Concentration gradient to control the number of groups. In the model constructed using quorum sensing signal isotropic density, the absolute strength of the signal as a single variable, the overall regulation of cell behavior, and the behavior of all the cells affected by the signal strength of a unified regulation, showing "0 or 1" type behavior, the concentration and spatial information "concentric circles" concentration gradient model formula in this model is formed, it will integrate the signal, and provide a vast parameter space for the subsequent gene access circuit, and is a complex biological structure after coding, for example, induction of gene expression in different behavior at different signal strengths, providing more degrees of freedom.
+ 
+ 
+FIG. 1-5 signal based on a concentration gradient is formed and the non-uniformity of symmetrical division schematic signal strength based quorum sensing is formed
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Chapter 2 Simulation , Numerical Verification and Experiment
+ 
+2.1 Modeling and numerical simulation using Morpheus
+2.1.1 Modeling and Introduction to Morpheus
+Study single cell biological processes, to regulate intracellular - transcription - based translation process is usually established using a mathematical model of differential equations, the kinetic and thermodynamicparameters into the model to simulate a biological system. At the single cell scale, time scale of these biological processes tend to vary, the number of spatial scales from ten nanometers to eukaryotic proteins from a few seconds (transcription, translation speed) to a few hours (eukaryotic protein half-life) A hundred micron range.
+However, the multi-cell systems modeling is quite different from the scale in terms of time and space, spatial scale multicellular processes often much higher than a few microns, depending on the number of cells from micrometers to millimeters even level, and its morphogenesis Time scales are often counted in hours. In constructing the model, the more inter-cell interactions such as cell-cell communication system, the mechanical interactions between cells and other factors need to be taken into account.
+ 
+Changes in research scales have also led to changes in our research and engineering objects. At the single-cell scale, researchers are interested in the effects of genes as basic components on the overall network ,such as how to tune the promoter strength in the gene loop so that the output protein expression can meet the regulatory requirements of downstream gene loops. In multicellular systems, we are no longer concerned about gene regulation processes inside the cell, and this process is more focused on how to play a role in spatial and temporal scales interface cells and cells, such as mutual adhesion between cells, or between cellsdirectly contactless communication, long distance communication between cells and other processes. Interface properties of these cells, rather than the nature of the specific process within cells, multicellularstructure directly determines the characteristics of the different cell populations formed.
+ 
+Morpheus As one kind of such software can simulate the process of multicellular organisms, also has internal analog cellular biochemical reactions, as well as the ability to simulate the process of interaction between molecular diffusion process simulation interface induced cells. Using this software, we can design of the biological processes inside a single cell, to simulate the evolution of the formed single cellbiological processes having a fixed size cell populations.
+ 
+2.1.2 Kinetic parameter determination and time scale separation :
+ 
+Differential analog evolution over time, so that when a plurality of simultaneously processing a large number of cells systems Morpheus differential equations using a numerical method, will simulate biologicalprocesses within each cell, and greatly increased the amount of computation required for simulation Time , it is difficult to get the simulation results, so it is necessary to apply certain assumptions to simplify the simulation process.
+ 
+Here, I will argue that the regulation of genes inside cells - transcription - the time scale of the translation process, which is compared with the time scale of the cell cycle, try to propose the following hypothesis:For time-scale multi-cellular processes, assuming related genes It is reasonable that the level of expression is always at a steady state or that the threshold required for activation is rapidly reached .
+ 
+Through access to relevant data [6], and calculates the biologically relevant scale, the time scale separation methods utilized to justify this assumption:
+ 
+Size mammalian cells from several ten micrometers to several thousands of microns depending on the length of the cell types. The diffusion constant of biological macromolecules such as proteins within cells is about10 um 2 / s, according to the diffusion equation and therefore, we can obtain a time scale of diffusion is from about several tens of seconds (for the cells to several tens of microns) to a few hours (for a number of A thousand micron cells) . Diameter cells (HEK 293) is used in the experiments was about 14 m, it is assumed that the diffusion dimension within a few ten seconds are quite reasonable.
+ 
+For small molecules, the diffusion constant is about 1000 um 2 / s, so for the HEK 293 cell line , it can be spread in less than a second .
+                    (2 -1 )
+ 
+Inside eukaryotic transcription and translation rate scales about 10 nt / s and 10 aa / s, the average protein size of about 300aa, so we can reasonably assume production rate time scale of about a few minutes proteins, HEK 293 cells The volume is about 1000 um 3 , so the intramolecular concentration of a protein is about :
+ 
+ 
+ 
+                         ( 2-2 )
+ 
+The effective concentration of intracellular protein is about 1 nM to 1 uM , and the corresponding protein has a copy number of 100 to 10000. If the DNA copy number is 1, and one DNA can only transcribe one mRNA at a time , the mRNA can only be simultaneously produce a protein, it is time scale of about 5 min to 8 h, but considering the DNA and mRNA while there may be multiple copies, while mRNA can be synthesized more proteins, so the actual time scale may be smaller, suggesting that The concentration of our target protein can reach its effect concentration in a short period of time .
+ 
+Mammalian cells, the degradation rate of RNA and protein synthesis as compared to its relatively slow rate. To HeLa cell line, for example, the mRNA half-life of about within about ten hours, while the half-life of the protein is more long, approximately about thirty hours. From the previous calculations, we can find that the speed of protein synthesis is very fast , so the expression of the relatively long half-life surfaceafter reaching steady state will be quite high, even if the slow degradation rate makes the protein take longer to reach the steady state .
+ 
+Although the rate of protein degradation leading to limit it to the time needed to reach steady-state and time scale similar to cell division, but if we look at '' the protein concentration required to achieve the effectof time ", the process is limited only by the transcription - translation rate , and the time scale much smaller than the time required for cell division, it is assumed that it is possible to quickly reach effectiveconcentration is reasonable before cell division.
+ 
+Therefore, we can in modeling biological processes for gene regulation expression of the division process cells treated time scale separation: When we consider the division and cell death, assuming the synthesis ofdiffusion and protein proteins and small molecules has been reached effect concentration, thus the steady state concentration effect of protein molecules and small molecules called directly, rather than its individualdebriefing simulated reaction.
+ 
+For programs of apoptotic cells, the cells activate autophagy will occur within 30 minutes, while the time scale of programmed cell death, depending on the situation, ranging from a few hours to 48 hours. Autophagytime scale and time scale similar to the split, but the current models can not even simulate the impact on the surrounding environment after cell death. Therefore, this may result in a significant difference between the final simulation results and the actual experiment.
+ 
+ 
+2.1.3 Morpheus Process:
+ 
+This procedure simulated biological processes, from a single or multiple "mother cell" starts, the blasts each division, will form two cells having different properties, which will keep the original a "mother cell" nature, while the other parent cell cells possess different "sub-cells" attribute. For each subsequent division, parent cells by asymmetric division will produce a mother cell and a sub-cells, and the cells are sub-divided into only two uniformly identical daughter cells.
+ 
+Mother cell carrying produce plasmid long-range cellular communications element, transcription and translation from a protein, the synthesis of specific signal small molecules, signaling molecules transferred to the surroundings by diffusion, in 2 D simulation, diffusion of small molecules The rate of degradation together determines the concentration gradient of the signal molecules. The daughter cells can not produce small molecule signal, only the detection signal of the concentration of small molecules, small molecules if the concentration of cells at the local sub less than a certain threshold value, programmed cell apoptosis can be activated.
+ 
+In the case of each force between modified cells not consider our mechanical force is provided between the mother cell and sub-cell interactions same strength and the strength of interaction between the daughter cells.
+ 
+ 
+Simulation results:
+Small molecule concentration signals and two different signaling systems are cell-cell contact were simulated to predict cell patterning. The simulation process has experienced enough time to ensure that the number ofcell populations reaches a steady level. In the process of small molecule signal simulation, by regulating the sensitivity of cells to small molecule signals, the response threshold of cell death switches can becontrolled to regulate the number of cell populations formed .
+ 
+   
+    
+FIG. 2-1: different thresholds dead cells produce a population of cells of different sizes (on), and four small cell clusters (shown mother cell division digital frequency) signal by cell-cell contact formation
+The results show that when the cell death threshold is lowered, the lower signal concentration is sufficient to maintain the survival of the daughter cells, inhibit the death switch , and the number of cell populations will increase compared to the higher mortality threshold . If the concentration is increased to increase the rate of synthesis of the local signal signal and the apparent diffusion rate of molecules through while larger cell population will produce in the steady state. During the simulation, the direction of each cell division is random, and the mother cells will still be one of the two cells that are split. Due to this division of the randomness in the simulated initial process, the relative position of the parent cell and daughter cells is not fixed, but when the community reaches a steady state, due to the effect of apoptosis, will eventually form a masterbatch cells Center, the sub-cells surround the pattern.
+ 
+For the simulation of intercellular contact signals , the daughter cells survive only when they are in contact with any of the mother cells. Cell population eventually bilayer forming relatively fixed "concentriccircles" structure, it reaches a steady-state rate and the relative stability of the mode signal are superior process-induced concentration gradient pattern formation. However, this design is currently only suitable forforming a double-layer concentric structure group , and can not arbitrarily adjust the size of the cell population .
+ 
+Morpheus video simulation process, see the Appendix.
+ 
+2.1.4 Discussion and reflection :
+ 
+During the simulation, we introduced a number of assumptions, depending on the actual situation of these assumptions there may not be applicable in all cases, resulting in the simulation results and the actual results differ from, so we need to be discussed here on these assumptions:
+ 
+(1), cell death will be immediately cleared once during the simulation from the current position, and will not occupy the original space, or affect the cells or surroundings, but actually takes several hours to several tens of apoptosis hours, and it is also possible after the death of the product continues around the cell culture to produce unpredictable effects.
+ 
+This effect may be avoided by the compact design, e.g., as compared to cell culture in a closed container, using a continuous flow cell culture medium can be removed as soon as the product of apoptosis, or a plurality of up-regulated apoptosis by simultaneous The expression of pathways accelerates the rate of apoptosis .
+ 
+(2) forming a concentration gradient of the signal signal molecules by diffusion and degradation of joint decision, only when the signal is sufficiently large concentration gradient (uM / um) to the control cellpopulation size within the range observed. Thus, when the signal faster than the rate of diffusion of small molecules, and in the case of the slow degradation rates, decreased concentration gradient of the signal is small, resulting in the need to dampen the great distance to effect concentration, in this case, the signal inducing molecule downstream gene expression within a short distance may appear to be the same, leading to no significant results.
+ 
+The diffusion constant D of a molecule is described by the Stocks-Einstein equation :
+                                              ( 2-3 )
+Where kT is the thermodynamic disturbance and R is the molecular radius,   Coefficient of viscous liquid
+             
+One solution is to select a slower rate of diffusion of signaling molecules, large molecules such as proteins, by increasing the radius R Save small diffusion constant; without changing the small molecular species, maybe changed by changing the viscosity coefficient of the medium Diffusion rate . On the other hand, according to the previous discussion, increase the degradation rate of small molecules, such as an expression of the small molecules degrading enzyme, it is possible to effectively reduce the characteristic length of the diffuser.
+ 
+ 
+2.2 Experimental design and verification :
+ 
+Due to time and condition constraints, this paper based on previous studies to test mammalian cell-based quorum sensing systems, while attempting to construct dilute and non-dilute plasmid systems, and quantitative analysis of experimental results.
+ 
+2.2.1 Intercellular long distance communication system test:
+ 
+Prokaryotes long-distance communication systems such as quorum sensing system, but so far, can be used in mammalian cell orthogonality long distance communication system has not been published. According to a previous preliminary study, researchers found that plants are able to synthesize a small molecule called p hloretin of the molecule plays a wide range of antibacterial in nature. And some microorganisms such asPseudomonas putida has the synergistic evolved in response to an efflux system of p hloretin, when p hloretin exists, its signal in response TtgR receptor, upregulated expression of T tgABC channel protein, the small molecule excreted [8].
+ 
+The researchers used a wide range of screenings to discover the use of 4-cobaltate in Aradopsis thaliana : CoA ligase (4 CL1 ) and Hypericum and Rosaaemum The chalcone synthase CHS, p hloretic acid catalyst may be as p hloretin.
+ 
+And Pseudomonas The TtgR receptor in putida was cloned to construct an activation / suppression system that relies on phloretin . When Phloretin is absent , the dimerized TtgR-dimer binds to a specific DNA sequence, andwhen Phloretin binds to TtgR, the TtgR- dimer complex will be opened and TtgR will be detached from the DNA site . If the DNA element is placed between conserved sequences of the core promoter , binding of TtgR to the DNA element will inhibit promoter initiation of downstream gene expression, whereas addition of Phloretin will dissociate the TtgR-dimer-DNA complex , thereby activating downstream prior to gene expression, and if DNAcore promoter element is placed, and the TtgR binding and transcriptional activation domain, DNA binding TtgR can be capable of activating expression of the downstream gene, while the addition of p hloretin will inhibit the expression of a downstream gene [ 9 ] .
+ 
+ 
+FIG 2 -3: Phloretin dependent suppression system and the activation system
+ 
+In a follow-up experiment , I used a phloretin-dependent activation system to study the induction curve of the reporter gene with phloretin dose . Four experiments used to construct plasmids schematic shown below:
+ 
+ 
+ 
+Plasmid Construction activation element (hef1a_MBCR-NESVP16NLS), suppression element (hef1a_tTgR-KRAB), phloretin response (PRMP v10, phloretin responsive mammalian promoter version 10) withtranscriptional marking element (hef 1a_TagBFP) diagram: FIG 2-4
+ 
+Wherein, hef1a constitutive expression promoter, the presence of M cbR may be combined with McbR G4 operator, which VP16 domain may enhance the expression of the downstream promoter, TtgR when the absence of phloretin, it will dimerization and with TtgR mut operator Binding, repressing transcription initiation and inhibiting gene expression. When the phloretin molecule is present, TtgR will dissociate from the operator and the transcription of the downstream gene will begin. TagBFP is a co -transfected reporter gene indicating transfection efficiency
+ 
+In the case of I of the four plasmids were cotransfected, adjusting the activation and suppression elements in different proportions , to test different lower transfection efficiency of the strength of the response . Different proportions of activating and inhibitory gene according to the table to be co-transcribed , cultured for 24 hours , added various concentrations ( 0 uM, 100u M) of Phloretin signal Molecule, continued culturing 24 after H, using FACs collect the fluorescence intensity signal cells .
+ 
+Table 2 -1 : Co-transcribed DNA experiment
+Total DNA	800ng	800ng	800ng	800ng	x = 100 ng
+Samples	6: PRMPv10	7: PRMPv10-Pos	8: PRMPv10-Neg	9: PRMPv10-NegL	 
+pKK593	x	x	x	x	hef1a_TagBFP
+pKK365	x	x	x	x	PRMPv10_neonnls
+pKK328	x	x	　	　	hef1a_MBCR-NESVP16NLS
+pKK054	x	　	x	　	hef1a_tTgR-KRAB
+Filler	4x	5x	5x	6x	 
+ 	 	 	 	 	 
+ 	 	 	 	 	 
+Total DNA	800ng	800ng	 	 	 
+Samples	10: PRMPv10	11: PRMPv10-Neg	 	 	 
+pKK593	x	x	hef1a_TagBFP	 
+pKK365	x	x	PRMPv10_neonnls	 
+pKK328	x	　	hef1a_MBCR-NESVP16NLS
+pKK054	2x	2x	hef1a_tTgR-KRAB	 
+Filler	3x	4x	 	 	 
+ 
+The collected data was analyzed using cytoflow . Using FSC and SSC selected single cell population, monochromatic control correction bleedthrough , transcription efficiency is determined by the Tag the BFP to characterize expression , the calculated efficiency corresponding to different transcripts output fluorescence intensity of the average value and The standard difference , rendered output fluorescence intensity transcription efficiency theLine chart.
+ 
+Figure 2 -5 : output fluorescent protein expression on the transcriptional efficiency line chart ( 2 xPRMP means twice the concentration inhibiting member ) (a) in response to the maximum multiple ( at )
+ 
+Data analysis showed that , when the relative transcription efficiency is . 3 0000 when , compared to no addition of phloretin concerned, 100 uM concentration phloretin stimulate capable of producing up to 16.3 times that of phloretin response . The positive control ( without the addition of inhibitory Elements ) Indicated AN Upper limit of Response ratio of Approximately 23.7.
+ 
+Discussion :
+ 
+Phloretin AS A Signal of Small Molecules , at The Diffusion Rate IS quite the FAST, IT IS Often field not the Easy to form AN as Effective Concentration gradient , Subsequent Experiments Showed that at The shame that software mixing phloretin Producing cells and the Response cells of at The the Cell Population Formed, IT IS 'apologetic' in at The Space concept Between significant differences Sexual protein expression . The previous analysis of , on the one hand , we can at after finding Protein degradation of Phloretin to degradation Phloretin local concentration, or whether a finding related to the protein or binding Phloretin material , reducing the apparent diffusion rate . On the other hand , in Experimental device designed, using a continuous stream of microfluidic systems , help diluted than Small signal molecules , to assist a concentration gradient is formed of.
+ 
+2.2.2 Non-dilution plasmid and dilution plasmid system construction :
+ 
+General The Mammalian the In Cell transient Transfection Experiments, A Plasmid Often field do with Carry Not replicate Mammalian cells Machine -related Origin of Replication , SO that The Copy Number Plasmid Will BE AS Cell Division IS Gradually reduced . HOWEVER, in The Presence of Nature Related to The Mammalian viruses, Carries there CAN Mammalian Cell Replication Machinery to Copy ITS Origin of Replication Capabilities . the System the SV40 Replication Plasmid System IS a program which in autonomous replication in mammalian cells, the plasmid system , which main part of SV40 large T antigen (Large T Antigen ) and the SV40 origin of replication [ 10 ] . Large T antigens inhibit cyclins such as p53 and Rb on the one Hand, promote cell entry into the cell cycle, and recruit DAN on the other hand. Copy - related elements to SV40 origin of replication , the starting plasmid of replication [ 11 ] .
+ 
+ 
+A FIG 2 -6 : The the SV40 Large T Antigen Assist Plasmid Replication mechanism Schematic
+ 
+ 
+The HEK293FT cell line is a cell line that constitutively expresses the SV40 large T antigen , and the cell line I have used here has integrated the SV40 Large T antigen expression system into the genome. Therefore, theoretically, when we use a plasmid containing the SV40 Origin of replication for transient transfection, the large T antigen expressed by this cell line will assist in the replication of the relevant plasmid and reducethe ITS Dilution Effect Due to the Cell Division . the If use containing the SV40 Replication Origin and not containing the SV40 Origin of Replication Plasmid transient Transfection , Theoretically containing there the SV40 Origin of Replication of at The Plasmid in at The Dilution Rate IS much less Within last that does not Contain the SV40 Replication Plasmid Origin of dilution rate.
+ 
+In this section , the I while containing a SV40 origin of replication and the SV40 does not contain a replication origin of a plasmid for the cell lines were transiently transfected, contains the SV40 origin of replication of a collage carrying a CMV -driven EGFP fluorescent labels And not containing SV40 origin of replication the plasmid is carrying CMV driven EBFP fluorescent marker.
+ 
+ 
+FIG 2 -7 : containing the SV40 ori of EGFP expression system and does not contain EBFP expression system of SV40 ori
+ 
+We are at 0h, 48 H, 96 H, 132h in 96-well plates of cells were transiently transfected, and 144 H to collect all the cells , flow cytometric fluorescence signal analysis. Simultaneously containing these two plasmids, and are free of both plasmids Cells also were transfected with, as the experimental monochrome control and blank control. In order to avoid cell growth too close Impede observation of the plasmid diluted in 0 H and 48 H transfected cells, respectively, 48 H and . 9 6H transfer at inlet 24 well plates .
+ 
+Table 2-2 : Design of experimental group and control group
+Sum	125	125	125	0	0	 
+Plasmid Number	1:DNA X	Green	Blue	Beads	Blank	Plasmid Description
+pBW361	25	25	0	0	0	pKK202(pCAG-TRUE-GFP)
+NA	25	0	25	0	0	CAG-EBFP
+pBW363	75	100	100	0	125	BLANK (Cag-FALSE pKK203)
+　	　	　	　	Beads	　	　
+ 
+At The Fluorescence Intensity of SINGLE cells WAS Collected by Flow Cytometry , and SINGLE the Cell Selection and Fluorescence leakage characteristic Correction were Performed a using cytoflow to Obtain at The Distribution's of at The Number The of cells in at The Experimental Group and at The Control Group with at The Intensity of Fluorescent Protein expression The . By Statistically greater than a predetermined threshold value ( here set 100As the fluorescence intensity detection limit) of the cells accounted for the total cell population characterized proportion plasmid distributed in the population . Diluted rate through the distribution is different times plasmids derived , eg , from 48 to 96 hours the dilution rate is calculated by the following Equation :
+ 
+            (2 -4 )
+ 
+Of The Dilution Rate from 96 H to 144 H WAS Also Calculated in A Similar Manner. Of The Greater value Large indicates that The Plasmid IS Diluted Faster , and The Smaller The value, The It would help The Speed of Dilution indicates that The Plasmid . The If The Dilution Rate Is greater than 1, it indicates that the process of plasmid dilution has occurred . If the dilution rate is less than 1, it may be caused during the plasmid replication.
+ 
+In order to explore the 96-well transfer plate to a 24-well plate culture if the cells will result in the plasmid profile in a population different, we compare a 96-well culture plate of 96 H, and a 96-well culture plate 48 H, then transferred to holes 24 in the plate 48 two experiments h, and from the data distribution can be seen, 24 -hole plate EBFP groups expression amount higher than the cell 1000 of the number slightly The decreased , but the E B the FP expressed at less than 100, the number of cells present significantly to increase, which may be due to the 24-well plate more cells , in obtaining a sufficient After the nutrition , the cells divide faster and cause Faster Dilution Efficiency . the Analysis of EGFP above threshold Proportion of cells A CAN BE found in A 24-Well Plate Plasmid Quantity distribution showed a clear downward trend .
+ 
+  
+Figure 2 -8 : the same culture at the time, EBFP expression profile
+ 
+ 
+Figure 2-9 : Dilution rates for different groups with a relative threshold of 100
+ 
+According to formula (2 -4 ), we calculated the dilution rates of different groups of EGFP and EBFP , respectively . It can be found that for the experiments of co-transfection of plasmids , the dilution rate of EGFP is close to 1, while EBFP is obvious when co-transfected . plasmid dilution phenomenon , which is consistent with our hypothesis. However, for each independentlyTransfected cell lines, the dilution rate of both plasmids are close to 1 .
+ 
+ 
+  
+Figure 2 -10 : co-transfection EBFP expression than transfection alone EBFP low expression level of one to two th orders of magnitude
+Further , co-transfection of the EBFP ( not carry SV40 origin of replication ) of the expression level compared to the monochromatic control the EBFP expressed lower amounts of a to two th orders of magnitude . The EGFP plasmid carrying the SV40 origin of replication appeared to Have some epistatic effects on the EBFP plasmid carrying no SV40 , inhibiting the expressionLevel of EBFP .
+ 
+ 
+Discuss:
+The this Experiment Responds to Changes in Plasmid Copy Number by Measuring The AMOUNT of Fluorescent Protein Expressed . The In FACT , there are some subtle Differences The BETWEEN TWO . Protein Steady State Concentration of A Protein of The Generated Decision and degradation Rates:
+         (2 -5 )
+While the protein generated by the rate and expression , plasmid copy number promoter strength, the rate of transcription and translation of common decision. In other conditions remain unchanged , and the transcription - translation molecular machinery is not saturated in a case, increasing the copy number Of the plasmid is often possible to increase the protein steady state expression amount. However, as previously described, the rate of formation of protein is relatively fast, and the degradation rate is Relatively slow, and therefore the plasmid copy number after receiving steady state, but also after a certain period of time (on average 24 H about, particularly by a protein category determined ) , it can be observed protein expression reached a steady state , and therefore The data in the time sequence when the analysis , required for expression of the protein to be considered the delay reaches a steady state .
+ 
+Experiments show that , plasmid protein is about 48 reaches a steady state of about H, and for 96 H to 144 H in the experimental group were investigated , it can be observed a certain plasmid dilution effect .
+ 
+And the other hand, the dilution rate and formula (2 -4 ) is the threshold of the relevant selection, since the fluorescence distribution of protein expression is not uniform , but is closer to the normal distribution , therefore the selection of the threshold value Change becomes , the dilution rate of the calculation results will produce changes :
+ 
+Figure 2 -11 : When the higher the selected threshold value (1000) , it is possible at 96 hours post observed to significant plasmid dilution phenomenon
+ 
+However, the 100 selected threshold is still a reasonable value because of less than 100 fluorescent protein expression relative already below the detection threshold, and autofluorescence of the cells in the same order of magnitude.
+ 
+On the other hand , when while selecting the higher threshold, the dilution rate of increase change show , plasmid diluted phenomenon occurs at a high concentration is more obvious, if noted enough time, that the dilution effect will eventually be projected up to the low concentration Threshold.
+ 
+By comprehensive analysis of the data, we can find, for carrying the SV40 origin of replication of plasmids, we observed less obvious plasmid replication phenomenon . Its possible causes include integration of SV40 T antigen into the genome for some reason silenced a , and therefore the After experiments can by immunohistochemistry or qPCR like manner to identify whether or not the protein in this cell line in Normal expression The. of The epistatic Effect of The Plasmid expressing EGFP ON The Plasmid expressing EBFP IS Unclear Due to The Origin of the SV40 Replication or Due to OTHER Different Elements ON The TWO plasmids, SO The Subsequent need to BE Exchanged ON The Basis of The Original Plasmid . Which Corresponds to Replication origin repeat the test, to verify whether the SV40 origin of replication cause deviations .
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Chapter III Reflection and Discussion
+ 
+This article from the traditional synthetic biology means starting to build with a certain population number of spheroids as Case, by reason of the gene circuit design and analysis parameters, using the Morpheus and other related software on cell growth and death, the diffusion of signaling molecules Process WAS of The simulated, and the finally, based ON The Work of The Predecessors , The of intercellular Long-Distance and Communication System The non-Dilution Dilution and were Plasmid Systems Tested . Due to Time Constraints , yet can all design , such as the details of how the project of programmed cell death in mammals, how in mammalian encoding plasmid gathering system and one by one to discuss a positive feedback loop, etc., have the work done and the experimental Data and raised new problems and challenges , but the job is given a complete of engineering paradigm: how Starting from a specific engineering goal, rationally design the various parts needed to accomplish the goal, and then Verify through modeling and experimentation . Want to be able to after work I can have the opportunity to perfect the details of the design, I hope this article can play some of the role , to later provide researchers some reference.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Reference Wen Xian :
+ 
+[1]: Elowitz, MB, & Leibler, S. (2000). A synthetic oscillatory network of transcriptional regulators. Nature, 403(6767), 335.   
+[2]: Toda, S., Blauch, LR, Tang, SK, Morsut, L., & Lim, WA (2018). Programming self-organizing multicellular structures with synthetic cell-cell signaling . Science, 361(6398), 156-162.   
+[3]: Morsut, L., Roybal, KT, Xiong, X., Gordley, RM, Coyle, SM, Thomson, M., & Lim, WA (2016). Engineering customized cell sensing and response behaviors using synthetic notch receptors Cell, 164(4), 780-791.
+[4]: Din, MO, Danino, T., Prindle, A., Skalak, M., Selimkhanov, J., Allen, K., ... & Hasty, J. (2016). Synchronized cycles of bacterial lysis For in vivo delivery. Nature, 536 (7614), 81.   
+[5 ]: Sara Molinari, David L. Shis, James Chappell, Oleg A. Igoshin, Matthew R. Bennett. (2018). Synthetic pluripotent bacterial stem cells. Retri e ved from https://www.biorxiv.org/content /10.1101/436535v2
+[6]: Cell biology by the numbers, Ron Milo, Rob Philips. Retrieved from http://book.bionumbers.org/
+[7]: MacDonald, RE, & Bishop, CJ (1952). Phloretin: an antibacterial substance obtained from apple leaves. Canadian Journal of Botany, 30(4), 486-489.   
+[8]: Terán, W., Felipe, A., Segura, A., Rojas, A., Ramos, JL, & Gallegos, MT (2003). Antibiotic-dependent induction of Pseudomonas putida DOT-T1E TtgABC efflux pump is Mediated by the drug binder repressor TtgR. Antimicrobial agents and chemotherapy, 47(10), 3067-3072.   
+[9 ]: XAVIER DUPORTET, "Developing new tools and platforms for mammalian synthetic biology: from the assembly and chromosomal integration of complex DNA circuits to the engineering of artificial intercellular communication systems" PhD diss., INRIA Rocquencourt and Massachusetts Institute of Technology, 14 November 2014.
+[10]: Mahon, MJ (2011). Vectors bicistronically linking a gene of interest to the SV40 large T antigen in combination with the SV40 origin of replication enhance transient protein expression and luciferase reporter activity. BioTechniques, 51(2), 119- 126.   
+[11]: Fanning, E., & Zhao, K. (2009). SV40 DNA replication: from the A gene to a nanomachine. Virology, 384(2), 352-359.   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Acknowledgement :
+ 
+Thank Ron Professor Weiss for me to provide instruction of graduate design and experimental space, thanks to me the supervisor, Dr. Katherine Kiwimagi, if not she take the trouble of patient guidance, willing from the head start taught conducting experiments and data analysis, Me in to go their own way down, and she get along with the time that I was at MIT happiest one time, if not she's careful to teach, so The I could not the even Paper in A bit of A Conclusion CAN not BE Achieved. Thanks to Jesse , Shiva, Ross for Their Help in Designing My Ideas. Thanks to Shen Ying , Zhang Yang and Yang Jing for Their Understanding and Help in at The 'apologetic' Writing Of my thesis.
+ 
+In addition , I also want to thank my friends , thank Yu Yi , whether it is in academic life, be able to have understanding and support me , thank Zhang Xinyu , Zhang Yu , Shen Wang dust , Wang Hui heart , Wang Zaiyue Wang Liang Yu , in my time frustrated willing to listen to me complaining , help me alleviate sadness , thank Pakistan has always been my life meticulous care. Thank Rui Xuan, Liu base and Dai Ding original , they brought me endless joy. Thank those all have not been mentioned , and once in my life when unsustainable helped My people.
+ 
+Thank Zhonggui Health teacher , she has been given me their studies on the guidance and the freshman chance to enter the laboratory study. I am grateful for his enthusiasm and unrelenting spirit of research and students , so that I can grow in research and life . Liao Jun teacher , Li Jian teacher, Shen Wei teacher, Zhuang Min teacher, bell super teacher , for my life, academic , researchAnd guidance iGEM competition has always been , I today of any achievements are inseparable from their nurtured .
+ 
+Finally, I would like to thank my family and parents , if they have not always been selfless support and encouragement for me unconditional love, I absolutely can not wayward in their own way this choice on the road no burden to go on.
+                                         
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Appendix :
+ 
+The Morpheus code and analog video involved in this article , specific python code , experimental protocol and notebook have been uploaded to GitHub , can be publicly accessed , some materials such as FACs raw data and detailed construction map of the plasmid , since the related work has Not been published, temporarily Not publicly released .
+ 
+
+NOTE : Phloretin screening system is a complete Dr. Xavier Duportet, and which transiently transfected with plasmid construct is a complete Dr. Katherine kiwimagi
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1
+ 
+
